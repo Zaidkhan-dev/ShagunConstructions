@@ -126,7 +126,7 @@ export function initViewer() {
   // Load Excavator FBX
   const loader = new FBXLoader();
   loader.load(
-    '/Excavator simples.fbx',
+    'Excavator simples.fbx',
     (fbx) => {
       excavatorModel = fbx;
       

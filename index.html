@@ -5,19 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shagun Construction | Premium Heavy Machinery & B2B Construction Vehicles</title>
   <meta name="description" content="Premium B2B supplier of heavy industrial vehicles, excavators, cranes, JCBs, and sugar lifts. Built with engineering precision for high-trust commercial sales.">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  <!-- --- Piston Loading Screen --- -->
+  <!-- --- Heavy Engine Piston Loading Screen --- -->
   <div id="loading-screen">
     <div class="piston-loader">
-      <div class="piston-cylinder"></div>
-      <div class="piston-head"></div>
-      <div class="piston-rod"></div>
-      <div class="piston-crank"></div>
+      <div class="piston-chamber">
+        <div class="piston-spark"></div>
+        <div class="piston-head"></div>
+        <div class="piston-rod"></div>
+        <div class="piston-crank"></div>
+      </div>
+      <div class="pressure-gauge-container">
+        <div class="pressure-gauge-fill" id="loader-gauge-fill"></div>
+      </div>
     </div>
-    <div class="loader-text">Calibrating Hydraulics...</div>
+    <div class="loader-status">
+      <span class="loader-title">CALIBRATING HYDRAULICS</span>
+      <span class="loader-percent" id="loader-percent-text">0%</span>
+    </div>
   </div>
 
   <!-- --- Header / Navigation --- -->

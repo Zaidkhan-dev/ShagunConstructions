@@ -8,7 +8,7 @@ export const products = [
     name: "TITAN EX-450",
     category: "Excavator",
     price: "$289,000",
-    image: "/excavator.jpg",
+    image: "excavator.jpg",
     shortDesc: "Heavy crawler excavator designed for extreme site excavation and bulk loading operations.",
     description: "The TITAN EX-450 crawler excavator represents the pinnacle of earthmoving engineering. Outfitted with high-pressure variable displacement pumps and a fuel-efficient common rail diesel engine, the EX-450 delivers unmatched breakout force and digging depths for commercial construction and mining.",
     specs: {
@@ -24,7 +24,7 @@ export const products = [
     name: "AETOS CR-1200",
     category: "Crane",
     price: "$850,000",
-    image: "/crane.jpg",
+    image: "crane.jpg",
     shortDesc: "Telescopic crawler crane designed for high-altitude lift capability and extreme load stability.",
     description: "Built for heavy industrial lift and erection duties, the AETOS CR-1200 telescopic crane combines crawler mobility with a high-capacity lattice structure. It is capable of operations on soft soils where traditional rubber-tired mobile cranes cannot travel.",
     specs: {
@@ -40,7 +40,7 @@ export const products = [
     name: "APEX JCB-3DX",
     category: "JCB",
     price: "$78,000",
-    image: "/jcb.jpg",
+    image: "jcb.jpg",
     shortDesc: "Versatile B2B backhoe loader engineered for utility excavation, roadworks, and local lifting.",
     description: "The APEX JCB-3DX backhoe loader is the utility workhorse of the industry. Offering extreme maneuverability, low operational costs, and dual-function bucket/loader configuration, it is ideal for medium-scale civil projects.",
     specs: {
@@ -56,7 +56,7 @@ export const products = [
     name: "KRAFT SL-60",
     category: "ScissorLift",
     price: "$45,000",
-    image: "/scissorlift.jpg",
+    image: "scissorlift.jpg",
     shortDesc: "Mobile electric scissor lift platform engineered for high-altitude B2B maintenance and installation.",
     description: "The KRAFT SL-60 scissor lift is engineered for safe aerial operations in commercial buildings and warehouses. Featuring robust crossing scissor hydraulic extensions, emergency lowering valves, and a slide-out deck extension, it ensures optimal reach and load capacity.",
     specs: {
@@ -864,16 +864,31 @@ function initApp() {
   // Initialize site-wide animations (easter eggs)
   initEasterEggs();
 
-  // Hide Loading Screen when assets are parsed (allow 1.5s for hydraulic load simulation)
+  // Animate hydraulic pressure percentage during load simulation
+  let loadProgress = 0;
+  const gaugeFill = document.getElementById('loader-gauge-fill');
+  const percentText = document.getElementById('loader-percent-text');
+
+  const progressInterval = setInterval(() => {
+    loadProgress += Math.floor(Math.random() * 15) + 10;
+    if (loadProgress >= 100) {
+      loadProgress = 100;
+      clearInterval(progressInterval);
+    }
+    if (gaugeFill) gaugeFill.style.width = `${loadProgress}%`;
+    if (percentText) percentText.textContent = `${loadProgress}%`;
+  }, 90);
+
+  // Smooth dismiss when calibration finishes
   setTimeout(() => {
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
-      loadingScreen.style.opacity = 0;
+      loadingScreen.style.opacity = '0';
       setTimeout(() => {
         loadingScreen.style.display = 'none';
-      }, 800);
+      }, 700);
     }
-  }, 1200);
+  }, 1100);
 }
 
 if (document.readyState === 'loading') {
