@@ -199,7 +199,7 @@ class Router {
         <div class="hero-content scroll-reveal in-view">
           <div class="hero-tag"><span></span>Engineering Precision</div>
           <h1 class="hero-title">High-Trust<br>Industrial <span>Machinery</span></h1>
-          <p class="hero-description">Shagun Construction delivers premium, high-capacity commercial construction vehicles to corporate buyers. Engineered for absolute uptime.</p>
+          <p class="hero-description">RS Associate delivers premium, high-capacity commercial construction vehicles to corporate buyers. Engineered for absolute uptime.</p>
           <div class="hero-ctas">
             <button class="btn-primary" id="hero-cta-explore">
               Explore Catalog
@@ -368,7 +368,7 @@ class Router {
         <div class="testimonials-slider">
           <div class="testimonial-card scroll-reveal">
             <span class="quote-icon">“</span>
-            <p class="testimonial-text">Shagun Construction's rig calibration is pristine. The excavator delivered to our dam project was in immediate field-operational order. Outstanding compliance.</p>
+            <p class="testimonial-text">RS Associate's rig calibration is pristine. The excavator delivered to our dam project was in immediate field-operational order. Outstanding compliance.</p>
             <div class="testimonial-author">
               <div class="author-info">
                 <h4>V. K. Singhal</h4>
@@ -642,7 +642,7 @@ class Router {
         <div class="section-header scroll-reveal">
           <div class="tech-marker">Corporate Registry</div>
           <h2 class="section-title">Our Story & Milestones</h2>
-          <p class="section-desc">Shagun Construction has served major engineering and agricultural projects with high-spec machinery fleets since 2012.</p>
+          <p class="section-desc">RS Associate has served major engineering and agricultural projects with high-spec machinery fleets since 2012.</p>
         </div>
 
         <div class="timeline">
@@ -752,17 +752,17 @@ class Router {
               </div>
               <div class="contact-details">
                 <h3>Sales Office</h3>
-                <p>sales@shagunconstruction.com</p>
-                <p>+91 20 555 0199</p>
+                <p>sales@rsassociate.com</p>
               </div>
             </div>
 
-            <!-- Custom blueprint map design -->
-            <div class="map-container">
-              <div class="map-blueprint-lines"></div>
-              <div class="map-location-marker">
-                <div class="map-marker-pin"></div>
-                <div class="map-location-label">SHAGUN HQ</div>
+            <div class="contact-card">
+              <div class="map-placeholder">
+                <div class="map-grid-overlay"></div>
+                <div class="map-pin">
+                  <div class="map-pin-pulse"></div>
+                  <div class="map-location-label">RS ASSOCIATE HQ</div>
+                </div>
               </div>
             </div>
           </div>
