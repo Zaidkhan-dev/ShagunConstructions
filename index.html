@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Associate | Premium Heavy Machinery & B2B Construction Vehicles</title>
-  <meta name="description" content="Premium B2B supplier of heavy industrial vehicles, excavators, cranes, JCBs, and sugar lifts. Built with engineering precision for high-trust commercial sales.">
+  <title>RS Associates | Certified Pre-Owned Heavy Construction Vehicles & Machinery</title>
+  <meta name="description" content="RS Associates buys and sells certified pre-owned heavy construction equipment: JCB 3DX backhoes, JCB 385LC excavators, and JCB 530-70 telehandlers. Immediate valuation and nationwide delivery.">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -50,18 +50,26 @@
           </g>
         </svg>
       </div>
-      <div class="logo-text">RS <span>Associate</span></div>
+      <div class="logo-text">RS <span>Associates</span></div>
     </div>
 
     <nav>
       <span class="nav-link" id="nav-home" data-route="/home">Home</span>
       <span class="nav-link" id="nav-catalog" data-route="/catalog">Machinery</span>
+      <span class="nav-link nav-highlight-sell" id="nav-sell-link">Sell Equipment</span>
       <span class="nav-link" id="nav-about" data-route="/about">About Us</span>
       <span class="nav-link" id="nav-contact" data-route="/contact">Contact</span>
     </nav>
 
-    <div class="cta-nav" id="nav-quote-cta" data-route="/contact">Request Quote</div>
-    <button class="mobile-menu-btn" id="mobile-menu-toggle">&#9776;</button>
+    <div class="header-cta-group">
+      <button class="btn-nav-sell" id="btn-nav-sell-cta">
+        <span class="btn-sell-dot"></span>
+        Sell Vehicle
+      </button>
+      <div class="cta-nav" id="nav-quote-cta" data-route="/contact">Request Quote</div>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
   </header>
 
   <!-- --- Persistent 3D Canvas --- -->
@@ -72,36 +80,139 @@
   <!-- --- Main Router Target --- -->
   <main id="app-router"></main>
 
+  <!-- --- Sell Construction Vehicle Modal Popup --- -->
+  <div class="modal-overlay" id="sell-vehicle-modal" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrapper">
+          <div class="tech-marker">Direct Fleet Buyout & Consignment</div>
+          <h2 class="modal-title">Sell Your Construction Equipment</h2>
+          <p class="modal-subtitle">Submit your machine details for an instant technical valuation and cash buyout offer from RS Associates.</p>
+        </div>
+        <button class="modal-close-btn" id="modal-sell-close" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form class="sell-form" id="form-sell-vehicle">
+        <input type="hidden" name="form_source" value="Sell Equipment Modal">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="sell-name">Owner / Company Name <span class="required">*</span></label>
+            <input type="text" name="name" class="form-input" id="sell-name" placeholder="e.g. Rajesh Kumar / RK Infra" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sell-phone">Phone / WhatsApp Number <span class="required">*</span></label>
+            <input type="tel" name="phone" class="form-input" id="sell-phone" placeholder="e.g. +91 98765 43210" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="sell-email">Email Address</label>
+            <input type="email" name="email" class="form-input" id="sell-email" placeholder="contact@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sell-location">Machine Location (City, State) <span class="required">*</span></label>
+            <input type="text" name="location" class="form-input" id="sell-location" placeholder="e.g. Pune, Maharashtra" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="sell-category">Equipment Category <span class="required">*</span></label>
+            <select name="category" class="form-input" id="sell-category" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="Backhoe Loader">Backhoe Loader (JCB 3DX / Case / CAT)</option>
+              <option value="Excavator">Tracked Hydraulic Excavator (JCB / Tata Hitachi / Komatsu)</option>
+              <option value="Telehandler">Telehandler (JCB Loadall / Manitou / CAT)</option>
+              <option value="Crane">Mobile / Crawler Crane</option>
+              <option value="Compactor">Soil Compactor / Road Roller</option>
+              <option value="Transit Mixer">Transit Mixer / Heavy Tipper</option>
+              <option value="Other Equipment">Other Construction Vehicle</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sell-model">Make & Model <span class="required">*</span></label>
+            <input type="text" name="model" class="form-input" id="sell-model" placeholder="e.g. JCB 3DX / JCB 385LC" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="sell-year">Manufacturing Year <span class="required">*</span></label>
+            <input type="number" name="year" class="form-input" id="sell-year" placeholder="e.g. 2021" min="2000" max="2027" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sell-hours">Operating Hours (Meter Reading)</label>
+            <input type="text" name="hours" class="form-input" id="sell-hours" placeholder="e.g. 3,200 hrs">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="sell-price">Asking Valuation / Expected Price (₹)</label>
+            <input type="text" name="price" class="form-input" id="sell-price" placeholder="e.g. ₹25 Lakhs / Best Offer">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sell-condition">Current Condition</label>
+            <select name="condition" class="form-input" id="sell-condition">
+              <option value="Running Condition - Ready for Work">Running Condition - Ready for Work</option>
+              <option value="Regularly Maintained - Minor Wear">Regularly Maintained - Minor Wear</option>
+              <option value="Needs Minor Mechanical Work">Needs Minor Mechanical Work</option>
+              <option value="Engine / Hydraulic Overhaul Needed">Engine / Hydraulic Overhaul Needed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="sell-notes">Machine History / Details / Photos Link</label>
+          <textarea name="notes" class="form-input" id="sell-notes" rows="2" placeholder="Mention RC/NOC status, tire/track life, or share Google Drive / Photos link..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary" id="btn-submit-sell" style="flex: 1; justify-content: center;">
+            <span class="btn-text">Submit Machine for Valuation</span>
+          </button>
+        </div>
+
+        <div class="form-status-msg" id="sell-status-msg" style="display: none;"></div>
+      </form>
+    </div>
+  </div>
+
   <!-- --- Footer --- -->
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>RS <span>Associate</span></h3>
-        <p>Premium B2B industrial vehicles and heavy machinery engineered for absolute reliability.</p>
+        <h3>RS <span>Associates</span></h3>
+        <p>Premium B2B heavy construction machinery and verified pre-owned commercial vehicles engineered for maximum site uptime.</p>
+        <div class="footer-quick-sell">
+          <button class="btn-secondary" id="footer-sell-btn" style="padding: 8px 16px; font-size: 0.85rem; margin-top: 12px;">Sell Your Equipment</button>
+        </div>
       </div>
       <div class="footer-links-col">
         <h4>Machinery</h4>
         <div class="footer-links">
-          <a href="#/catalog?cat=Excavator">Excavators</a>
-          <a href="#/catalog?cat=Crane">Heavy Cranes</a>
-          <a href="#/catalog?cat=JCB">JCB Backhoes</a>
-          <a href="#/catalog?cat=ScissorLift">Scissor Lifts</a>
+          <a href="#/catalog?cat=Backhoe">JCB Backhoes</a>
+          <a href="#/catalog?cat=Excavator">Heavy Excavators</a>
+          <a href="#/catalog?cat=Telehandler">Telehandlers</a>
+          <a href="#/catalog">All Certified Fleet</a>
         </div>
       </div>
       <div class="footer-links-col">
-        <h4>Company</h4>
+        <h4>Services</h4>
         <div class="footer-links">
-          <a href="#/about">About Our Story</a>
-          <a href="#/about">Milestones</a>
-          <a href="#/contact">Office Locations</a>
-          <a href="#/about">Safety First</a>
+          <a href="#/home#sell-section" id="footer-link-sell">Sell Your Vehicle</a>
+          <a href="#/about">Technical Verification</a>
+          <a href="#/contact">Procurement Desk</a>
+          <a href="#/about">Safety Compliance</a>
         </div>
       </div>
       <div class="footer-links-col">
         <h4>Contact</h4>
         <div class="footer-links">
-          <a href="tel:+18005550199">Toll Free: +1 800 555 0199</a>
-          <a href="mailto:sales@rsassociate.com">sales@rsassociate.com</a>
+          <a href="tel:+919876543210">Direct: +91 98765 43210</a>
+          <a href="mailto:sales@rsassociates.com">sales@rsassociates.com</a>
           <p style="color: #6C6C74; font-size: 0.85rem; margin-top: 8px;">HQ: Sector 11, Industrial Area, Pune, MH, India</p>
         </div>
       </div>
@@ -111,31 +222,31 @@
     <div class="conveyor-belt-strip">
       <div class="conveyor-belt-inner" id="conveyor-belt">
         <div class="conveyor-item">
-          <span>Heavy Duty Excavator</span>
+          <span>JCB 3DX Super Backhoe</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>All-Terrain Cranes</span>
+          <span>JCB 385LC Heavy Excavator</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>Industrial JCB loaders</span>
+          <span>JCB 530-70 Telehandler</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>Electric Scissor Lifts</span>
+          <span>Certified Pre-Owned Inspection</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
         </div>
         <div class="conveyor-item">
-          <span>Heavy Duty Excavator</span>
+          <span>JCB 3DX Super Backhoe</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>All-Terrain Cranes</span>
+          <span>JCB 385LC Heavy Excavator</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>Industrial JCB loaders</span>
+          <span>JCB 530-70 Telehandler</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
-          <span>Electric Scissor Lifts</span>
+          <span>Certified Pre-Owned Inspection</span>
           <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="currentColor"/></svg>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 RS Associate. All Rights Reserved. Engineering Grade B2B.</p>
-      <p style="color: #6C6C74;">Precision Safety Standards Approved</p>
+      <p>&copy; 2026 RS Associates. All Rights Reserved. Heavy Construction Vehicles & Equipment Trading.</p>
+      <p style="color: #6C6C74;">Engineering Grade B2B Verified Fleet</p>
     </div>
   </footer>
 

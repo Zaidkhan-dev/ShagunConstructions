@@ -1,8 +1,10 @@
 {
-  "name": "rs-associate",
+  "name": "rs-associates",
   "private": true,
   "version": "1.0.0",
+  "description": "RS Associates - Heavy Construction Vehicles & Certified Pre-Owned Machinery Portal",
   "type": "module",
+  "homepage": "https://zaidkhan-dev.github.io/RS-Associates/",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -18,3 +20,4 @@
     "vite": "^5.1.0"
   }
 }
+

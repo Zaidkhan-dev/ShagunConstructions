@@ -1849,3 +1849,404 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   SELL EQUIPMENT SECTION, MODAL POPUP & WEB3FORMS SYSTEM
+   ========================================================================== */
+
+/* Header Sell Button */
+.header-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-nav-sell {
+  background: rgba(247, 181, 0, 0.15);
+  border: 1px solid var(--color-accent);
+  color: var(--color-text-main);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-nav-sell:hover {
+  background: var(--color-accent);
+  color: #14161B;
+  box-shadow: 0 4px 12px rgba(247, 181, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-sell-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: pulseSellDot 1.8s infinite;
+}
+
+@keyframes pulseSellDot {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px var(--color-accent); }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.nav-highlight-sell {
+  color: #B38100 !important;
+  font-weight: 700 !important;
+}
+.nav-highlight-sell:hover {
+  color: #8C6500 !important;
+}
+
+/* Certified Pre-Owned & Condition Badges */
+.badge-preowned {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(247, 181, 0, 0.15);
+  border: 1px solid rgba(247, 181, 0, 0.4);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: #9A6F00;
+  margin-bottom: 8px;
+}
+
+.badge-preowned::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9A6F00;
+}
+
+.product-hours-tag {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-bg-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+/* Sell Equipment Section on Home */
+.sell-showcase-section {
+  padding: 100px 8%;
+  background: linear-gradient(145deg, #18191D 0%, #23252A 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid var(--color-accent);
+}
+
+.sell-showcase-section .blueprint-grid {
+  opacity: 0.15;
+}
+
+.sell-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sell-showcase-section .section-title {
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.sell-showcase-section .section-desc {
+  color: #A3A3AC;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.sell-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.sell-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #E2E2E6;
+}
+
+.sell-benefit-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(247, 181, 0, 0.2);
+  border: 1px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.sell-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Sell Steps Process Card */
+.sell-process-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.sell-process-header {
+  margin-bottom: 24px;
+}
+
+.sell-process-header h3 {
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.sell-process-header p {
+  color: #92929B;
+  font-size: 0.85rem;
+}
+
+.sell-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sell-step-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.sell-step-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  background: rgba(247, 181, 0, 0.12);
+  border: 1px solid rgba(247, 181, 0, 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sell-step-content h4 {
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.sell-step-content p {
+  color: #8C8C96;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+/* Modal Popup Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 16, 20, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 34px 30px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-title {
+  font-size: 1.55rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+.modal-close-btn {
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-main);
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-accent);
+  color: #14161B;
+  border-color: var(--color-accent);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 2px;
+}
+
+.required {
+  color: #E63946;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+/* Status message banner */
+.form-status-msg {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form-status-msg.status-success {
+  background: #E8F5E9;
+  border: 1px solid #4CAF50;
+  color: #1B5E20;
+}
+
+.form-status-msg.status-error {
+  background: #FFEBEE;
+  border: 1px solid #E53935;
+  color: #B71C1C;
+}
+
+.form-status-msg.status-loading {
+  background: #FFF8E1;
+  border: 1px solid #FFC107;
+  color: #795548;
+}
+
+/* WhatsApp quick connect tag */
+.quick-wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #25D366;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-top: 8px;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sell-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .modal-container {
+    padding: 24px 18px;
+  }
+
+  .btn-nav-sell {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+}
