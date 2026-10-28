@@ -1,10 +1,10 @@
 {
-  "name": "rs-associates",
+  "name": "gurukripa-enterprises",
   "private": true,
   "version": "1.0.0",
-  "description": "RS Associates - Heavy Construction Vehicles & Certified Pre-Owned Machinery Portal",
+  "description": "Gurukripa Enterprises - Heavy Construction Vehicles & Certified Pre-Owned Machinery Portal",
   "type": "module",
-  "homepage": "https://zaidkhan-dev.github.io/RS-Associates/",
+  "homepage": "https://zaidkhan-dev.github.io/GurukripaEnterprises/",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",

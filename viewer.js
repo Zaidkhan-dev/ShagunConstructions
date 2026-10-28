@@ -343,7 +343,9 @@ function onWindowResize() {
 export function showViewer() {
   const container = document.getElementById('canvas-container');
   if (container) {
-    container.style.opacity = 1;
+    container.classList.remove('hidden-viewer');
+    container.style.display = 'block';
+    container.style.opacity = '1';
     container.style.pointerEvents = 'auto';
   }
   
@@ -369,7 +371,9 @@ export function showViewer() {
 export function hideViewer() {
   const container = document.getElementById('canvas-container');
   if (container) {
-    container.style.opacity = 0;
+    container.classList.add('hidden-viewer');
+    container.style.display = 'none';
+    container.style.opacity = '0';
     container.style.pointerEvents = 'none';
   }
   isAnimating = false;
@@ -383,3 +387,4 @@ export function hideViewer() {
   const panel = document.querySelector('.dev-controls');
   if (panel) panel.remove();
 }
+

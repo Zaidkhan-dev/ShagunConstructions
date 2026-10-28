@@ -3,11 +3,13 @@ import { initEasterEggs } from './easter-eggs.js';
 
 // --- Web3Forms & Dispatch Configuration ---
 export const WEB3FORMS_CONFIG = {
-  // RS Associates Web3Forms Access Key (User can replace with their specific key if needed)
+  // Gurukripa Enterprises Web3Forms Access Key
   access_key: "0b58e745-9851-4043-98eb-6c1d11ca730a",
-  whatsapp_number: "+919876543210",
-  whatsapp_link: "https://wa.me/919876543210",
-  contact_email: "sales@rsassociates.com"
+  whatsapp_number: "+918318372693",
+  whatsapp_link: "https://wa.me/918318372693",
+  contact_phone: "8318372693",
+  contact_email: "sales@gurukripaenterprises.com",
+  address: "Gayatri Puram, Kursi Road, Lucknow - 226022, Uttar Pradesh, India"
 };
 
 // Reusable Web3Forms Form Submission Service
@@ -21,7 +23,7 @@ export async function submitViaWeb3Forms(formDataObj, statusEl, submitBtn, succe
   if (statusEl) {
     statusEl.className = 'form-status-msg status-loading';
     statusEl.style.display = 'block';
-    statusEl.textContent = 'Transmitting your data securely to RS Associates dispatch...';
+    statusEl.textContent = 'Transmitting your data securely to Gurukripa Enterprises dispatch...';
   }
 
   const payload = {
@@ -43,14 +45,14 @@ export async function submitViaWeb3Forms(formDataObj, statusEl, submitBtn, succe
     if (result.success) {
       if (statusEl) {
         statusEl.className = 'form-status-msg status-success';
-        statusEl.innerHTML = `✓ Inquiry registered successfully via Web3Forms! Reference: RS-${Math.floor(1000 + Math.random() * 9000)}. Our machinery specialists will contact you shortly.`;
+        statusEl.innerHTML = `✓ Inquiry registered successfully via Web3Forms! Reference: GE-${Math.floor(1000 + Math.random() * 9000)}. Our machinery specialists will contact you shortly.`;
       }
       if (successCallback) successCallback(true);
     } else {
       console.warn('Web3Forms response notice:', result);
       if (statusEl) {
         statusEl.className = 'form-status-msg status-success';
-        statusEl.innerHTML = `✓ Inquiry captured! Reference: RS-${Math.floor(1000 + Math.random() * 9000)}.<br><span style="font-size:0.84rem;font-weight:normal;">Our fleet team will reach out at your provided contact details. You can also <a href="${WEB3FORMS_CONFIG.whatsapp_link}" target="_blank" class="quick-wa-link">Chat directly on WhatsApp</a>.</span>`;
+        statusEl.innerHTML = `✓ Inquiry captured! Reference: GE-${Math.floor(1000 + Math.random() * 9000)}.<br><span style="font-size:0.84rem;font-weight:normal;">Our fleet team will reach out at your provided contact details. You can also <a href="${WEB3FORMS_CONFIG.whatsapp_link}" target="_blank" class="quick-wa-link">Chat directly on WhatsApp (8318372693)</a>.</span>`;
       }
       if (successCallback) successCallback(true);
     }
@@ -58,7 +60,7 @@ export async function submitViaWeb3Forms(formDataObj, statusEl, submitBtn, succe
     console.error('Submission network error:', err);
     if (statusEl) {
       statusEl.className = 'form-status-msg status-success';
-      statusEl.innerHTML = `✓ Inquiry recorded! Reference: RS-${Math.floor(1000 + Math.random() * 9000)}.<br><span style="font-size:0.84rem;font-weight:normal;">Our team will reach out at your phone/email. Need immediate assistance? <a href="${WEB3FORMS_CONFIG.whatsapp_link}" target="_blank" class="quick-wa-link">Message us on WhatsApp</a>.</span>`;
+      statusEl.innerHTML = `✓ Inquiry recorded! Reference: GE-${Math.floor(1000 + Math.random() * 9000)}.<br><span style="font-size:0.84rem;font-weight:normal;">Our team will reach out at your phone/email. Need immediate assistance? <a href="${WEB3FORMS_CONFIG.whatsapp_link}" target="_blank" class="quick-wa-link">Message us on WhatsApp (8318372693)</a>.</span>`;
     }
     if (successCallback) successCallback(true);
   } finally {
@@ -68,6 +70,7 @@ export async function submitViaWeb3Forms(formDataObj, statusEl, submitBtn, succe
     }
   }
 }
+
 
 // --- Actual Client Machine Inventory (Certified Pre-Owned) ---
 export const products = [
@@ -156,7 +159,7 @@ class Router {
         if (link.id === 'nav-sell-link') {
           e.preventDefault();
           window.openSellVehicleModal();
-          this.navContainer.classList.remove('mobile-active');
+          this.closeMobileMenu();
           return;
         }
 
@@ -164,15 +167,24 @@ class Router {
         const route = link.getAttribute('data-route');
         if (route) {
           window.location.hash = `#${route}`;
-          this.navContainer.classList.remove('mobile-active');
+          this.closeMobileMenu();
         }
       });
     });
 
     // Mobile menu toggle
     if (this.mobileToggle) {
-      this.mobileToggle.addEventListener('click', () => {
-        this.navContainer.classList.toggle('mobile-active');
+      this.mobileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = this.navContainer.classList.toggle('mobile-active');
+        this.mobileToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
+      });
+
+      // Close mobile menu if clicked outside
+      document.addEventListener('click', (e) => {
+        if (this.navContainer && !this.navContainer.contains(e.target) && !this.mobileToggle.contains(e.target)) {
+          this.closeMobileMenu();
+        }
       });
     }
 
@@ -185,7 +197,18 @@ class Router {
     }
   }
 
+  closeMobileMenu() {
+    if (this.navContainer) {
+      this.navContainer.classList.remove('mobile-active');
+    }
+    if (this.mobileToggle) {
+      this.mobileToggle.innerHTML = '&#9776;';
+    }
+  }
+
   handleRoute() {
+    this.closeMobileMenu();
+
     const hash = window.location.hash || '#/home';
     
     // Parse Hash URL
@@ -198,8 +221,10 @@ class Router {
       path = '#/home';
     }
 
-    // Hide the 3D viewer by default for non-home pages
-    if (path !== '#/home' && !path.startsWith('#/home#')) {
+    // Strictly toggle the 3D viewer state
+    if (path === '#/home' || path.startsWith('#/home#')) {
+      showViewer();
+    } else {
       hideViewer();
     }
     
@@ -230,6 +255,7 @@ class Router {
     if (path === '#/home' || path.startsWith('#/home#')) {
       this.renderHome();
     } else if (path === '#/catalog') {
+
       this.renderCatalog(query.cat);
     } else if (path.startsWith('#/product/')) {
       const productId = path.split('#/product/')[1];
@@ -282,7 +308,7 @@ class Router {
         <div class="hero-content scroll-reveal in-view">
           <div class="hero-tag"><span></span>Certified Pre-Owned Machinery</div>
           <h1 class="hero-title">High-Trust<br>Industrial <span>Machinery</span></h1>
-          <p class="hero-description">RS Associates buys, inspects, and sells premium pre-owned construction vehicles: JCB backhoes, heavy excavators, and telehandlers across India. Engineered for absolute uptime.</p>
+          <p class="hero-description">Gurukripa Enterprises buys, inspects, and sells premium pre-owned construction vehicles: JCB backhoes, heavy excavators, and telehandlers across India. Engineered for absolute uptime.</p>
           <div class="hero-ctas">
             <button class="btn-primary" id="hero-cta-explore">
               Explore Available Fleet
@@ -333,7 +359,7 @@ class Router {
           <div class="sell-content scroll-reveal">
             <div class="tech-marker" style="color: var(--color-accent);">Direct Machine Buyouts & Brokerage</div>
             <h2 class="section-title">Want to Sell Your Construction Machinery?</h2>
-            <p class="section-desc">Upgrading your commercial fleet or liquidating surplus vehicles? RS Associates purchases pre-owned excavators, JCB backhoes, and telehandlers across India. Receive fair market valuation, prompt site inspection, and 100% secure direct payment.</p>
+            <p class="section-desc">Upgrading your commercial fleet or liquidating surplus vehicles? Gurukripa Enterprises purchases pre-owned excavators, JCB backhoes, and telehandlers across India. Receive fair market valuation, prompt site inspection, and 100% secure direct payment.</p>
             
             <div class="sell-benefits-list">
               <div class="sell-benefit-item">
@@ -355,12 +381,13 @@ class Router {
                 Submit Machine for Valuation
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
-              <a href="${WEB3FORMS_CONFIG.whatsapp_link}?text=Hello%20RS%20Associates,%20I%20want%20to%20sell%20my%20construction%20equipment." target="_blank" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+              <a href="${WEB3FORMS_CONFIG.whatsapp_link}?text=Hello%20Gurukripa%20Enterprises,%20I%20want%20to%20sell%20my%20construction%20equipment." target="_blank" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.07 16.3C4.24 14.98 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
                 WhatsApp Inquiry
               </a>
             </div>
           </div>
+
 
           <div class="sell-process-card scroll-reveal">
             <div class="sell-process-header">
@@ -490,13 +517,13 @@ class Router {
         <div class="section-header scroll-reveal">
           <div class="tech-marker">Verified Deliveries</div>
           <h2 class="section-title">Commercial Feedback</h2>
-          <p class="section-desc">Hear from civil infrastructure leads and contractors who bought or sold machinery with RS Associates.</p>
+          <p class="section-desc">Hear from civil infrastructure leads and contractors who bought or sold machinery with Gurukripa Enterprises.</p>
         </div>
 
         <div class="testimonials-slider">
           <div class="testimonial-card scroll-reveal">
             <span class="quote-icon">“</span>
-            <p class="testimonial-text">RS Associates delivered the pre-owned JCB 385LC excavator directly to our highway bypass site. All hydraulic cylinders were pristine and the machine was immediately operational.</p>
+            <p class="testimonial-text">Gurukripa Enterprises delivered the pre-owned JCB 385LC excavator directly to our highway bypass site. All hydraulic cylinders were pristine and the machine was immediately operational.</p>
             <div class="testimonial-author">
               <div class="author-info">
                 <h4>V. K. Singhal</h4>
@@ -506,7 +533,7 @@ class Router {
           </div>
           <div class="testimonial-card scroll-reveal">
             <span class="quote-icon">“</span>
-            <p class="testimonial-text">We sold our surplus JCB 3DX backhoe through RS Associates. The evaluation was done on-site within 24 hours, and payment was credited to our bank account before they loaded it onto their trailer.</p>
+            <p class="testimonial-text">We sold our surplus JCB 3DX backhoe through Gurukripa Enterprises. The evaluation was done on-site within 24 hours, and payment was credited to our bank account before they loaded it onto their trailer.</p>
             <div class="testimonial-author">
               <div class="author-info">
                 <h4>Rajesh Kurup</h4>
@@ -516,6 +543,7 @@ class Router {
           </div>
         </div>
       </section>
+
 
       <!-- --- CONTACT CTA --- -->
       <section class="section tech-border-diagonal" style="background-color: var(--color-text-main); color: #FFFFFF; text-align: center; padding: 100px 8%;">
@@ -740,7 +768,7 @@ class Router {
                 <input type="hidden" name="form_source" value="Vehicle Detail Page">
                 <input type="hidden" name="vehicle_name" value="${product.name}">
                 <input type="hidden" name="vehicle_id" value="${product.id}">
-                <input type="hidden" name="subject" value="Buyer Inquiry: ${product.name} - RS Associates">
+                <input type="hidden" name="subject" value="Buyer Inquiry: ${product.name} - Gurukripa Enterprises">
 
                 <div class="form-group">
                   <label class="form-label" for="quote-name">Full Name / Organization <span class="required">*</span></label>
@@ -750,7 +778,7 @@ class Router {
                 <div class="form-row">
                   <div class="form-group">
                     <label class="form-label" for="quote-phone">Phone / WhatsApp Number <span class="required">*</span></label>
-                    <input type="tel" name="phone" class="form-input" id="quote-phone" placeholder="e.g. +91 98765 43210" required>
+                    <input type="tel" name="phone" class="form-input" id="quote-phone" placeholder="e.g. 8318372693" required>
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="quote-email">Corporate Email</label>
@@ -825,7 +853,7 @@ class Router {
         <div class="section-header scroll-reveal">
           <div class="tech-marker">Corporate Registry</div>
           <h2 class="section-title">Our Story & Milestones</h2>
-          <p class="section-desc">RS Associates has connected heavy infrastructure contractors, quarries, and civil builders with verified machinery fleets since 2012.</p>
+          <p class="section-desc">Gurukripa Enterprises has connected heavy infrastructure contractors, quarries, and civil builders with verified machinery fleets since 2012.</p>
         </div>
 
         <div class="timeline">
@@ -834,7 +862,7 @@ class Router {
             <div class="timeline-year">2012</div>
             <div class="timeline-content">
               <h4 style="margin-bottom: 8px;">Inception & Earthmoving Core</h4>
-              <p style="font-size: 0.9rem; color: var(--color-text-muted);">Founded in Pune, supplying regional road infrastructure and civil foundations with dependable backhoe loaders and utility earthmovers.</p>
+              <p style="font-size: 0.9rem; color: var(--color-text-muted);">Founded in Lucknow, Uttar Pradesh, supplying regional road infrastructure and civil foundations with dependable backhoe loaders and utility earthmovers.</p>
             </div>
           </div>
           
@@ -860,7 +888,7 @@ class Router {
             <div class="timeline-dot"></div>
             <div class="timeline-year">2026</div>
             <div class="timeline-content">
-              <h4 style="margin-bottom: 8px;">RS Associates Trading Desk</h4>
+              <h4 style="margin-bottom: 8px;">Gurukripa Enterprises Trading Desk</h4>
               <p style="font-size: 0.9rem; color: var(--color-text-muted);">Launched the direct machine buyout and consignment division with Web3Forms integration, offering rapid valuations and secure payouts.</p>
             </div>
           </div>
@@ -887,7 +915,7 @@ class Router {
             
             <form id="form-contact-procure">
               <input type="hidden" name="form_source" value="Contact Page">
-              <input type="hidden" name="subject" value="Procurement Consultation Request - RS Associates">
+              <input type="hidden" name="subject" value="Procurement Consultation Request - Gurukripa Enterprises">
 
               <div class="form-group">
                 <label class="form-label" for="contact-name">Full Name / Company <span class="required">*</span></label>
@@ -897,7 +925,7 @@ class Router {
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="contact-phone">Phone / WhatsApp Number <span class="required">*</span></label>
-                  <input type="tel" name="phone" class="form-input" id="contact-phone" placeholder="e.g. +91 98765 43210" required>
+                  <input type="tel" name="phone" class="form-input" id="contact-phone" placeholder="e.g. 8318372693" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="contact-email">Corporate Email</label>
@@ -935,7 +963,7 @@ class Router {
               </div>
               <div class="contact-details">
                 <h3>Central Machinery Yard HQ</h3>
-                <p>Sector 11, Industrial Estate, Pune, Maharashtra 411018, India</p>
+                <p>Gayatri Puram, Kursi Road, Lucknow - 226022, Uttar Pradesh, India</p>
               </div>
             </div>
 
@@ -945,8 +973,8 @@ class Router {
               </div>
               <div class="contact-details">
                 <h3>Direct Inquiries</h3>
-                <p>sales@rsassociates.com</p>
-                <p style="margin-top: 4px; font-weight: 600; color: var(--color-accent);">Phone / WhatsApp: +91 98765 43210</p>
+                <p>sales@gurukripaenterprises.com</p>
+                <p style="margin-top: 4px; font-weight: 600; color: var(--color-accent);">Phone / WhatsApp: 8318372693</p>
               </div>
             </div>
 
@@ -955,7 +983,7 @@ class Router {
                 <div class="map-grid-overlay"></div>
                 <div class="map-pin">
                   <div class="map-pin-pulse"></div>
-                  <div class="map-location-label">RS ASSOCIATES HQ</div>
+                  <div class="map-location-label">GURUKRIPA ENTERPRISES HQ</div>
                 </div>
               </div>
             </div>
@@ -963,6 +991,7 @@ class Router {
         </div>
       </section>
     `;
+
 
     const contactForm = document.getElementById('form-contact-procure');
     const submitContact = document.getElementById('btn-submit-contact');
@@ -1109,7 +1138,7 @@ function initSellModal() {
       const formData = new FormData(sellForm);
       const data = Object.fromEntries(formData.entries());
       data.form_title = "Vehicle Selling Inquiry";
-      data.subject = `Sell Vehicle Request: ${data.category || ''} - ${data.model || ''} - RS Associates`;
+      data.subject = `Sell Vehicle Request: ${data.category || ''} - ${data.model || ''} - Gurukripa Enterprises`;
 
       submitViaWeb3Forms(data, statusMsg, submitBtn, () => {
         sellForm.reset();

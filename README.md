@@ -1,6 +1,10 @@
-# RS Associates | Heavy Construction Vehicles & Certified Pre-Owned Machinery
+# Gurukripa Enterprises | Heavy Construction Vehicles & Certified Pre-Owned Machinery
 
 Enterprise-grade B2B platform for commercial construction vehicles, earthmovers, and heavy equipment trading. Built with precision engineering aesthetics, interactive 3D Three.js visualization, verified equipment listings, direct machine buyout forms, and Web3Forms inquiry integration.
+
+- **Headquarters**: Gayatri Puram, Kursi Road, Lucknow - 226022, Uttar Pradesh, India
+- **Phone / WhatsApp**: 8318372693 (+91 8318372693)
+- **Email**: sales@gurukripaenterprises.com
 
 ---
 
@@ -38,25 +42,25 @@ All vehicles in this inventory have undergone a certified 120-point mechanical, 
 
 ---
 
-## ⚙️ Renaming GitHub Repository & URL to RS Associates
+## ⚙️ Renaming GitHub Repository & URL to Gurukripa Enterprises
 
-To update your GitHub repository and GitHub Pages URL to **RS Associates**:
+To update your GitHub repository and GitHub Pages URL to **GurukripaEnterprises**:
 
 1. **Rename on GitHub**:
    - Go to your repository on GitHub: `https://github.com/Zaidkhan-dev/ShagunConstructions`
    - Click on **Settings** (tab at the top).
-   - In the **General** section under **Repository name**, enter: `RS-Associates` (or `RSAssociates`).
+   - In the **General** section under **Repository name**, enter: `GurukripaEnterprises` (or `Gurukripa-Enterprises`).
    - Click **Rename**.
    
 2. **Update your local Git Remote URL**:
    Run this in your terminal:
    ```bash
-   git remote set-url origin https://github.com/Zaidkhan-dev/RS-Associates.git
+   git remote set-url origin https://github.com/Zaidkhan-dev/GurukripaEnterprises.git
    ```
 
 3. **New Live GitHub Pages URL**:
    Once renamed, your site will be live at:
-   **`https://zaidkhan-dev.github.io/RS-Associates/`**
+   **`https://zaidkhan-dev.github.io/GurukripaEnterprises/`**
 
 ---
 
