@@ -205,8 +205,16 @@ export function initViewer() {
 
       scene.add(excavatorModel);
 
-      // Start Render Loop
-      animate();
+      // Force proper dimensions and matrix calculation
+      onWindowResize();
+
+      // Check current route: show viewer if on home, otherwise hide
+      const currentRoute = window.location.hash || '#/home';
+      if (currentRoute === '#/home' || currentRoute.startsWith('#/home#') || currentRoute === '#' || !currentRoute) {
+        showViewer();
+      } else {
+        hideViewer();
+      }
     },
     undefined,
     (error) => {
@@ -322,6 +330,10 @@ function onWindowResize() {
   const container = document.getElementById('canvas-container');
   if (!container || !renderer || !camera) return;
 
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+  if (!width || !height) return;
+
   const isMobile = window.innerWidth <= 768;
 
   if (isMobile) {
@@ -334,21 +346,26 @@ function onWindowResize() {
     camera.lookAt(-2.5, 1.5, 2.0);
   }
 
-  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setSize(width, height);
 }
 
 // Router Callbacks
 export function showViewer() {
   const container = document.getElementById('canvas-container');
   if (container) {
-    container.classList.remove('hidden-viewer');
-    container.style.display = 'block';
-    container.style.opacity = '1';
-    container.style.pointerEvents = 'auto';
+    container.classList.remove('viewer-hidden', 'hidden-viewer');
+    container.classList.add('viewer-active');
+    // Clear legacy inline styles that might interfere
+    container.style.removeProperty('display');
+    container.style.removeProperty('opacity');
+    container.style.removeProperty('visibility');
+    container.style.removeProperty('pointer-events');
   }
   
+  isIntersecting = true;
+
   window.addEventListener('mousemove', handleMouseMove, { passive: true });
   window.addEventListener('touchmove', handleTouchMove, { passive: true });
   window.addEventListener('mousedown', handleMouseDown, { passive: true });
@@ -356,11 +373,12 @@ export function showViewer() {
 
   if (!camera || !renderer) {
     initViewer();
-  }
-
-  setTimeout(() => {
+  } else {
     onWindowResize();
-  }, 60);
+    setTimeout(() => {
+      onWindowResize();
+    }, 60);
+  }
 
   if (!isAnimating) {
     isAnimating = true;
@@ -371,10 +389,12 @@ export function showViewer() {
 export function hideViewer() {
   const container = document.getElementById('canvas-container');
   if (container) {
-    container.classList.add('hidden-viewer');
-    container.style.display = 'none';
-    container.style.opacity = '0';
-    container.style.pointerEvents = 'none';
+    container.classList.remove('viewer-active');
+    container.classList.add('viewer-hidden');
+    container.style.removeProperty('display');
+    container.style.removeProperty('opacity');
+    container.style.removeProperty('visibility');
+    container.style.removeProperty('pointer-events');
   }
   isAnimating = false;
   cancelAnimationFrame(animationFrameId);
