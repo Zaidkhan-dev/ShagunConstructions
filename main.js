@@ -177,7 +177,8 @@ class Router {
       this.mobileToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = this.navContainer.classList.toggle('mobile-active');
-        this.mobileToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
+        this.mobileToggle.classList.toggle('active', isOpen);
+        this.mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
 
       // Close mobile menu if clicked outside
@@ -202,7 +203,8 @@ class Router {
       this.navContainer.classList.remove('mobile-active');
     }
     if (this.mobileToggle) {
-      this.mobileToggle.innerHTML = '&#9776;';
+      this.mobileToggle.classList.remove('active');
+      this.mobileToggle.setAttribute('aria-expanded', 'false');
     }
   }
 
